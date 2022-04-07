@@ -1,0 +1,46 @@
+<!DOCTYPE html>{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'Form_App/css/login.css'%}">
+    <title>Form_App</title>
+</head>
+<body>
+    <section class="cloudlogin">
+        <link href='https://fonts.googleapis.com/css?family=Ubuntu:500' rel='stylesheet' type='text/css'>
+    
+        <div class="login">
+            <div class="login-header">
+                <h2>Login</h2>
+                <img src="{% static 'Form_App/images/logo.png'%}" height="60px" width="100px">
+            </div>
+
+    {% if messages %}                      
+          {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+            <strong>Message:</strong> {{ message }}.
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+          {% endfor %}
+          {% endif %}
+        <form method="POST">{% csrf_token %}
+            <div class="login-form">
+                <h3>Username:</h3>
+                <input type="text" name="username" placeholder="Username" /><br>
+                <h3>Password:</h3>
+                <input type="password" name="password" placeholder="Password" />
+                <br>
+                {% comment %} <input type="button" value="Login" class="login-button" /> {% endcomment %}
+               <button type="submit" class="btn btn-primary">Submit</button>
+                <br>
+                <a class="sign-up" href="{% url 'register' %}">Sign Up!</a>
+                <br>
+            </div>
+        </form>
+        </div>
+        
+    </section>
+</body>
+</html>
